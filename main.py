@@ -37,3 +37,13 @@ category_spending.plot.pie(autopct='%1.1f%%')
 plt.title('Incomes and Spendings')
 plt.ylabel('') 
 plt.show()
+
+data['Week'] = data['Date'].dt.isocalendar().week
+weekly_spending = data.groupby('Week')['Amount'].sum()
+plt.figure(figsize=(10, 5))
+weekly_spending.plot(kind='line', marker='o')
+plt.title('Weekly Spending Trend')
+plt.xlabel('Week Number')
+plt.ylabel('Spending ($)')
+plt.grid(True)
+plt.show()
